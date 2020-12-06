@@ -2,6 +2,8 @@ package day4
 
 import scala.io.Source
 
+import util.{Semigroup, LineParser}
+
 case class PassportData(fields: Map[String, String]) {
   def |+|(other: PassportData): PassportData =
     copy(fields = fields ++ other.fields)
@@ -79,43 +81,26 @@ object PassportData {
     val isValid: Boolean = false
   }
 
-  def parseLine(line: String): PassportData = PassportData(
-    line
-      .split("""\s+""")
-      .flatMap { part =>
-        part.split(":", 2) match {
-          case Array(fieldName, fieldValue) => Some(fieldName -> fieldValue)
-          case _                            => None
-        }
-      }
-      .toMap[String, String]
-  )
-
-  val empty: PassportData = PassportData(Map.empty)
-
-  case class ParserState(built: Seq[PassportData], current: PassportData) {
-    def +(partial: PassportData): ParserState =
-      copy(current = current |+| partial)
-    def commit: ParserState =
-      copy(
-        built = if (current.isEmpty) built else built :+ current,
-        current = PassportData.empty
+  implicit val parser: LineParser[PassportData] =
+    LineParser.withBlankLineTerminators { line =>
+      PassportData(
+        line
+          .split("""\s+""")
+          .flatMap { part =>
+            part.split(":", 2) match {
+              case Array(fieldName, fieldValue) => Some(fieldName -> fieldValue)
+              case _                            => None
+            }
+          }
+          .toMap[String, String]
       )
-  }
-  object ParserState {
-    val empty: ParserState = ParserState(Seq.empty, PassportData.empty)
-  }
-  def fromSource(source: Source): Seq[PassportData] =
-    source
-      .getLines()
-      .foldLeft[ParserState](ParserState.empty) { case (state, line) =>
-        if (line.isBlank())
-          state.commit
-        else
-          state + PassportData.parseLine(line)
-      }
-      .commit
-      .built
+    }
+
+  implicit val semigroup: Semigroup[PassportData] =
+    Semigroup[PassportData](
+      PassportData(Map.empty),
+      (a: PassportData, b: PassportData) => a |+| b
+    )
 }
 
 object PassportValidator extends App {
@@ -125,7 +110,8 @@ object PassportValidator extends App {
     false -> "[ NOT VALID ]"
   )
 
-  val passports = PassportData.fromSource(Source.fromFile(passportDataFeedFile))
+  val passports =
+    LineParser.fromSource[PassportData](Source.fromFile(passportDataFeedFile))
 
   println("Passports:")
   passports.foreach { p =>
