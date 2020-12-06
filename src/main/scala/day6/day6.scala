@@ -32,7 +32,7 @@ object PassengerGroup {
     )
 }
 
-object CustomsForm extends App {
+object Main extends App {
   val passengerSurveyFilePath = "src/main/scala/day6/survey.txt"
 
   val groupsUnion =

@@ -22,7 +22,7 @@ object Seat {
   }
 }
 
-object SeatChecker extends App {
+object Main extends App {
   val seatFilePath = "src/main/scala/day5/seats.txt"
 
   val seats =

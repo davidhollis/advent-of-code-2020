@@ -27,7 +27,7 @@ object PasswordAndPolicy {
   }
 }
 
-object PasswordChecker extends App {
+object Main extends App {
   val passwordFilePath = "src/main/scala/day2/passwords.txt"
 
   val valid = Source
@@ -37,6 +37,6 @@ object PasswordChecker extends App {
     .filter { case (password, policy) => policy.acceptsCurrent(password) }
     .toSeq
 
-  println(s"==> ${valid.length} valid passwords:")
   valid.foreach { case (password, policy) => println(s"$policy: $password") }
+  println(s"==> ${valid.length} valid passwords")
 }

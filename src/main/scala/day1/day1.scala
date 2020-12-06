@@ -21,7 +21,7 @@ class ExpenseReportValidator(
   }
 }
 
-object ExpenseReportValidator extends App {
+object Main extends App {
   val expenseFilePath = "src/main/scala/day1/expenses.txt"
   val desiredSum = 2020
 

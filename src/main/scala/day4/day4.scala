@@ -101,7 +101,7 @@ object PassportData {
     )
 }
 
-object PassportValidator extends App {
+object Main extends App {
   val passportDataFeedFile: String = "src/main/scala/day4/passports.txt"
 
   val passports =
