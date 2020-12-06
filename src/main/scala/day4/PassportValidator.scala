@@ -5,10 +5,8 @@ import scala.io.Source
 import util.{Semigroup, LineParser}
 
 case class PassportData(fields: Map[String, String]) {
-  def |+|(other: PassportData): PassportData =
+  def union(other: PassportData): PassportData =
     copy(fields = fields ++ other.fields)
-
-  lazy val isEmpty: Boolean = fields.isEmpty
 
   lazy val validate: PassportData.ValidationResult =
     PassportData.requiredFields.foldLeft[PassportData.ValidationResult](
@@ -99,16 +97,12 @@ object PassportData {
   implicit val semigroup: Semigroup[PassportData] =
     Semigroup[PassportData](
       PassportData(Map.empty),
-      (a: PassportData, b: PassportData) => a |+| b
+      (a: PassportData, b: PassportData) => a union b
     )
 }
 
 object PassportValidator extends App {
   val passportDataFeedFile: String = "src/main/scala/day4/passports.txt"
-  val validityLabels: Map[Boolean, String] = Map(
-    true -> "[   VALID   ]",
-    false -> "[ NOT VALID ]"
-  )
 
   val passports =
     LineParser.fromSource[PassportData](Source.fromFile(passportDataFeedFile))
