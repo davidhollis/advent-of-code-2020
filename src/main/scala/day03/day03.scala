@@ -70,7 +70,7 @@ object SlopeMap {
 }
 
 object Main extends App {
-  val mapFilePath = "src/main/scala/day3/map.txt"
+  val mapFilePath = "src/main/scala/day03/map.txt"
   val velocities = Seq(
     Velocity(1, 1),
     Velocity(3, 1),

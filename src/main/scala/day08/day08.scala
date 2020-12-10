@@ -119,7 +119,7 @@ object HandheldEmulator {
 }
 
 object Main extends App {
-  val programPath = "src/main/scala/day8/program.txt"
+  val programPath = "src/main/scala/day08/program.txt"
 
   val program =
     Source

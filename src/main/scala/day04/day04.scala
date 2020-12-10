@@ -102,7 +102,7 @@ object PassportData {
 }
 
 object Main extends App {
-  val passportDataFeedFile: String = "src/main/scala/day4/passports.txt"
+  val passportDataFeedFile: String = "src/main/scala/day04/passports.txt"
 
   val passports =
     LineParser.fromSource[PassportData](Source.fromFile(passportDataFeedFile))

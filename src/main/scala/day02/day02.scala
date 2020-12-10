@@ -28,7 +28,7 @@ object PasswordAndPolicy {
 }
 
 object Main extends App {
-  val passwordFilePath = "src/main/scala/day2/passwords.txt"
+  val passwordFilePath = "src/main/scala/day02/passwords.txt"
 
   val valid = Source
     .fromFile(passwordFilePath)

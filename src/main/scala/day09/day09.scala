@@ -30,7 +30,7 @@ case class XmasStream(values: Seq[Int], windowSize: Int) {
 }
 
 object Main extends App {
-  val streamPath = "src/main/scala/day9/xmas-stream.txt"
+  val streamPath = "src/main/scala/day09/xmas-stream.txt"
   val windowSize = 25
 
   val stream = XmasStream(

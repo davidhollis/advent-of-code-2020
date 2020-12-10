@@ -23,7 +23,7 @@ object Seat {
 }
 
 object Main extends App {
-  val seatFilePath = "src/main/scala/day5/seats.txt"
+  val seatFilePath = "src/main/scala/day05/seats.txt"
 
   val seats =
     Source

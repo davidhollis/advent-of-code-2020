@@ -102,7 +102,7 @@ object RuleSet {
 }
 
 object Main extends App {
-  val ruleFilePath = "src/main/scala/day7/rules.txt"
+  val ruleFilePath = "src/main/scala/day07/rules.txt"
   val ourBag = BagColor("shiny gold")
 
   val rules = LineParser.fromSource[RuleSet](Source.fromFile(ruleFilePath)).head

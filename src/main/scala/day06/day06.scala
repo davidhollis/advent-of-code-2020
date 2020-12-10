@@ -33,7 +33,7 @@ object PassengerGroup {
 }
 
 object Main extends App {
-  val passengerSurveyFilePath = "src/main/scala/day6/survey.txt"
+  val passengerSurveyFilePath = "src/main/scala/day06/survey.txt"
 
   val groupsUnion =
     LineParser.fromSource[PassengerGroup](
