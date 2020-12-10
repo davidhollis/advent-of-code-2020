@@ -9,4 +9,4 @@ You can run any particular day with
 sbt "runMain day$N.Main"
 ```
 
-(for example, `day1.Main` is the entry point for day 1's solution)
+where `$N` is the two-digit day number (for example, `day01.Main` is the entry point for day 1's solution)

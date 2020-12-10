@@ -1,4 +1,4 @@
-package day1
+package day01
 
 import scala.io.Source
 
@@ -22,7 +22,7 @@ class ExpenseReportValidator(
 }
 
 object Main extends App {
-  val expenseFilePath = "src/main/scala/day1/expenses.txt"
+  val expenseFilePath = "src/main/scala/day01/expenses.txt"
   val desiredSum = 2020
 
   val expenses =

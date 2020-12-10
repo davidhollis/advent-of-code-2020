@@ -1,6 +1,6 @@
-package day9
+package day09
 
-import day1.ExpenseReportValidator
+import day01.ExpenseReportValidator
 import scala.io.Source
 
 case class XmasStream(values: Seq[Int], windowSize: Int) {
